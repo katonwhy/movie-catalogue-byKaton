@@ -5,56 +5,52 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
+import com.dicoding.katonmoviecatalogue.data.TvshowEntity
+import com.dicoding.katonmoviecatalogue.databinding.FragmentTvshowsBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class TvshowsFragment : Fragment(), TvshowsFragmentCallback {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TvshowsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class TvshowsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var fragmentTvshowsBinding: FragmentTvshowsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tvshows, container, false)
+        fragmentTvshowsBinding = FragmentTvshowsBinding.inflate(layoutInflater, container, false)
+        return fragmentTvshowsBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TvshowsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TvshowsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity != null) {
+            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvshowsViewModel::class.java]
+            val tvshows = viewModel.getTvshows()
+
+            val tvshowsAdapter = TvshowsAdapter(this)
+            tvshowsAdapter.setTvshows(tvshows)
+
+            with(fragmentTvshowsBinding.rvTvshows) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = tvshowsAdapter
             }
+        }
     }
+
+    override fun onShareClick(tvshow: TvshowEntity) {
+        if (activity != null) {
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder
+                .from(requireActivity())
+                .setType(mimeType)
+                .setText(resources.getString(R.string.share_text_tvshow, tvshow.title))
+                .startChooser()
+        }
+    }
+
 }

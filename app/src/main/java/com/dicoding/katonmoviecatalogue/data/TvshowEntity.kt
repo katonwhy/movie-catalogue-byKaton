@@ -1,7 +1,7 @@
 package com.dicoding.katonmoviecatalogue.data
 
 data class TvshowEntity(
-    var movieId: String,
+    var tvshowId: String,
     var title: String,
     var genre: String,
     var rating: String,

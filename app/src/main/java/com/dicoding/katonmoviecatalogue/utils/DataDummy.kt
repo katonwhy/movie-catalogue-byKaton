@@ -302,7 +302,7 @@ object DataDummy {
                 "Toshiki Inoue",
                 "Goku and Bulma's search continues for the seven Dragonballs, while he met new friends and fearsome enemies in his journey",
                 false,
-                R.drawable.poster_arrow
+                R.drawable.poster_dragon_ball
             ))
         tvshows.add(
             TvshowEntity(

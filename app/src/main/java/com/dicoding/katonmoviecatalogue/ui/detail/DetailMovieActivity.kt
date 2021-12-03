@@ -9,4 +9,8 @@ class DetailMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_movie)
     }
+
+    companion object {
+        const val EXTRA_MOVIE = "extra_movie"
+    }
 }

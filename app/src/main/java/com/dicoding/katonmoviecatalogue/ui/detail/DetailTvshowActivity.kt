@@ -9,4 +9,8 @@ class DetailTvshowActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_tvshow)
     }
+
+    companion object {
+        const val EXTRA_TVSHOW = "extra_tvshow"
+    }
 }

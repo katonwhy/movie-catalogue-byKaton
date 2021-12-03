@@ -19,4 +19,6 @@
     <string name="synopsis_placeholder">Synopsis</string>
     <string name="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper magna ac pretium hendrerit. Fusce a laoreet tellus. Etiam porttitor neque a est luctus, aliquet blandit lacus pharetra.</string>
     <string name="seasons_placeholder">Seasons/Episodes</string>
+    <string name="share_text">Hey! This %s movie is so good, you definitely have to watch this</string>
+    <string name="share_text_tvshow">Hey! This %s series is so good, you definitely have to watch this</string>
 </resources>
