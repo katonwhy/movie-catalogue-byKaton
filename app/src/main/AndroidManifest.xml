@@ -13,11 +13,14 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.detail.DetailTvshowActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:theme="@style/Theme.KatonMovieCatalogue.NoActionBar"/>
         <activity
             android:name=".ui.detail.DetailMovieActivity"
             android:exported="true"
-            android:parentActivityName=".ui.home.HomeActivity">
+            android:parentActivityName=".ui.home.HomeActivity"
+            android:theme="@style/Theme.KatonMovieCatalogue.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />
@@ -25,8 +28,7 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.KatonMovieCatalogue.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
