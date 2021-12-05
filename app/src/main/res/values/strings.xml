@@ -13,7 +13,8 @@
     <string name="release">Release</string>
     <string name="seasons">10 Seasons</string>
     <string name="duration_placeholder">Duration</string>
-    <string name="director">Producer/Creator</string>
+    <string name="director">Director</string>
+    <string name="producer">Producer/Creator</string>
     <string name="watchlist">WATCHLIST</string>
     <string name="rating_placeholder">Rating(IMDb)</string>
     <string name="synopsis_placeholder">Synopsis</string>

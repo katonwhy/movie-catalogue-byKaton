@@ -29,10 +29,22 @@ class HomeActivityTest {
     @Test
     fun loadDetailMovie() {
         onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.iv_movie_poster)).check(matches(isDisplayed()))
+        //onView(withId(R.id.iv_movie_poster)).check(matches(withText(dummyMovie[0].image))) *create custom matcher with drawable
         onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title)).check(matches(withText(dummyMovie[0].title)))
         onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_genre)).check(matches(withText(dummyMovie[0].genre)))
+        onView(withId(R.id.tv_duration)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_duration)).check(matches(withText(dummyMovie[0].duration)))
+        onView(withId(R.id.tv_director)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_director)).check(matches(withText(dummyMovie[0].director)))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(withText(dummyMovie[0].release)))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(withText(dummyMovie[0].rating)))
+        onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description)).check(matches(withText(dummyMovie[0].description)))
     }
 
     @Test
@@ -46,10 +58,22 @@ class HomeActivityTest {
     fun loadDetailTvshow() {
         onView(withText("SERIES")).perform(click())
         onView(withId(R.id.rv_tvshows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.iv_tvshow_poster)).check(matches(isDisplayed()))
+        //onView(withId(R.id.iv_tvshow_poster)).check(matches(withTagValue(equalTo(dummyTvshow[0].image)))) *create custom matcher with drawable
         onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_title)).check(matches(withText(dummyTvshow[0].title)))
+        onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_genre)).check(matches(withText(dummyTvshow[0].genre)))
         onView(withId(R.id.tv_seasons)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_seasons)).check(matches(withText(dummyTvshow[0].seasons)))
+        onView(withId(R.id.tv_director)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_director)).check(matches(withText(dummyTvshow[0].director)))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(withText(dummyTvshow[0].release)))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(withText(dummyTvshow[0].rating)))
+        onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description)).check(matches(withText(dummyTvshow[0].description)))
     }
 
 }
