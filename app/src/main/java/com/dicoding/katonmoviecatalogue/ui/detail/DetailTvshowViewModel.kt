@@ -1,24 +1,14 @@
 package com.dicoding.katonmoviecatalogue.ui.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
+import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.utils.DataDummy
 
-class DetailTvshowViewModel: ViewModel() {
+class DetailTvshowViewModel (private val movieRepository: MovieRepository): ViewModel() {
     private lateinit var tvshowId: String
 
-    fun setSelectedTvshow(tvshowId: String) {
-        this.tvshowId = tvshowId
-    }
-
-    fun getTvshow(): TvshowEntity {
-        lateinit var tvshow: TvshowEntity
-        val tvshows = DataDummy.generateDummyTvshows()
-        for (tvshowEntity in tvshows) {
-            if (tvshowEntity.tvshowId == tvshowId) {
-                tvshow = tvshowEntity
-            }
-        }
-        return tvshow
-    }
+    fun getTvshow(id : Int) : LiveData<TvshowEntity> = movieRepository.getDetailTvShow(id)
 }

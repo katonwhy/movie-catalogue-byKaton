@@ -9,9 +9,10 @@
     <string name="title">Title</string>
     <string name="genre">Genre</string>
     <string name="rating">7.5</string>
-    <string name="duration">2h 15m</string>
+    <string name="duration">%sh %sm</string>
     <string name="release">Release</string>
-    <string name="seasons">10 Seasons</string>
+    <string name="release_placeholder">Release Date</string>
+    <string name="seasons">%s Seasons</string>
     <string name="duration_placeholder">Duration</string>
     <string name="director">Director</string>
     <string name="producer">Producer/Creator</string>

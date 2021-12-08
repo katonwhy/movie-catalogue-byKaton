@@ -1,9 +1,10 @@
 package com.dicoding.katonmoviecatalogue.ui.movies
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
-import com.dicoding.katonmoviecatalogue.utils.DataDummy
+import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepository
 
-class MoviesViewModel: ViewModel() {
-    fun getMovies(): List<MovieEntity> = DataDummy.generateDummyMovies()
+class MoviesViewModel (private val movieRepository: MovieRepository) : ViewModel() {
+    fun getMovies(): LiveData<List<MovieEntity>> = movieRepository.getAllMovies()
 }

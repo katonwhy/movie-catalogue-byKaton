@@ -2,6 +2,8 @@ package com.dicoding.katonmoviecatalogue.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,6 +12,10 @@ import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.databinding.ActivityDetailMovieBinding
 import com.dicoding.katonmoviecatalogue.databinding.ContentDetailMovieBinding
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.API_IMAGE
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.IMAGE_SIZE
+import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -24,34 +30,49 @@ class DetailMovieActivity : AppCompatActivity() {
         setSupportActionBar(activityDetailMovieBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailMovieViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
-            val movieId = extras.getString(EXTRA_MOVIE)
+            val movieId = extras.getInt(EXTRA_MOVIE, 0)
             if (movieId != null) {
-                viewModel.setSelectedMovie(movieId)
-                populateMovie(viewModel.getMovie())
+
+                activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
+                activityDetailMovieBinding.content.visibility = View.INVISIBLE
+
+                viewModel.getMovie(movieId).observe(this, {
+
+                    activityDetailMovieBinding.progressBar.visibility = View.GONE
+                    activityDetailMovieBinding.content.visibility = View.VISIBLE
+
+                    populateMovie(it)
+                })
             }
+        }
+
+        contentDetailMovieBinding.toggleFavorite.setOnClickListener {
+            Toast.makeText(this, "Success add to Favorite", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun populateMovie(movieEntity: MovieEntity) {
-        contentDetailMovieBinding.tvTitle.text = movieEntity.title
-        contentDetailMovieBinding.tvGenre.text = movieEntity.genre
-        contentDetailMovieBinding.tvDuration.text = movieEntity.duration
-        contentDetailMovieBinding.tvDirector.text = movieEntity.director
-        contentDetailMovieBinding.tvRelease.text = movieEntity.release
-        contentDetailMovieBinding.tvRating.text = movieEntity.rating
-        contentDetailMovieBinding.tvDescription.text = movieEntity.description
+        with(contentDetailMovieBinding){
 
-        Glide.with(this)
-            .load(movieEntity.image)
-            .transform(RoundedCorners(40))
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                .error(R.drawable.ic_error))
-            .into(contentDetailMovieBinding.ivMoviePoster)
+            tvTitle.text = movieEntity.title
+            tvGenre.text = movieEntity.genre
+            tvRelease.text = movieEntity.release
+            tvRating.text = movieEntity.rating.toString()
+            tvDescription.text = movieEntity.description
+
+            val hourDuration : Int = movieEntity.duration / 60
+            val minutesDuration = movieEntity.duration % 60
+
+            tvDuration.text = resources.getString(R.string.duration, hourDuration.toString(), minutesDuration.toString())
+
+            ImagePathApi.setImageDetail(this@DetailMovieActivity, API_IMAGE + IMAGE_SIZE + movieEntity.image, ivMoviePoster)
+
+        }
     }
 
     companion object {

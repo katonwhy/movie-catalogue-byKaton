@@ -10,6 +10,7 @@ import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.ItemsTvshowBinding
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailTvshowActivity
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
 
 class TvshowsAdapter(private val callback: TvshowsFragmentCallback): RecyclerView.Adapter<TvshowsAdapter.TvshowsViewHolder>() {
     private var listTvshows = ArrayList<TvshowEntity>()
@@ -24,22 +25,24 @@ class TvshowsAdapter(private val callback: TvshowsFragmentCallback): RecyclerVie
         fun bind(tvshow: TvshowEntity) {
             with(binding) {
                 tvItemTitle.text = tvshow.title
-                tvItemGenre.text = tvshow.genre
                 tvRelease.text = tvshow.release
-                tvSeasons.text = tvshow.seasons
-                tvRating.text = tvshow.rating
+                tvRating.text = tvshow.rating.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvshowActivity::class.java)
                     intent.putExtra(DetailTvshowActivity.EXTRA_TVSHOW, tvshow.tvshowId)
                     itemView.context.startActivity(intent)
                 }
                 imgShare.setOnClickListener { callback.onShareClick(tvshow) }
-                Glide.with(itemView.context)
-                    .load(tvshow.image)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                            .error(R.drawable.ic_error))
-                    .into(imgPoster)
+
+                tvshow.image.let { image ->
+                    with(imgPoster){
+                        ImagePathApi.setImage(
+                            itemView.context,
+                            ImagePathApi.API_IMAGE + ImagePathApi.IMAGE_SIZE + image,
+                            imgPoster
+                        )
+                    }
+                }
             }
         }
     }

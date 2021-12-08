@@ -5,7 +5,7 @@ import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 
 object DataDummy {
-
+    /*
     fun generateDummyMovies(): List<MovieEntity> {
 
         val movies = ArrayList<MovieEntity>()
@@ -567,4 +567,6 @@ object DataDummy {
 
         return tvshows
     }
+
+     */
 }

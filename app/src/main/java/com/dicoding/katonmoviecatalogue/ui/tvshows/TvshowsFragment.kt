@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.FragmentTvshowsBinding
+import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
 
 class TvshowsFragment : Fragment(), TvshowsFragmentCallback {
 
@@ -28,11 +29,17 @@ class TvshowsFragment : Fragment(), TvshowsFragmentCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[TvshowsViewModel::class.java]
-            val tvshows = viewModel.getTvshows()
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[TvshowsViewModel::class.java]
 
             val tvshowsAdapter = TvshowsAdapter(this)
-            tvshowsAdapter.setTvshows(tvshows)
+
+            fragmentTvshowsBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getTvshows().observe(viewLifecycleOwner, { movies ->
+                fragmentTvshowsBinding.progressBar.visibility = View.GONE
+                tvshowsAdapter.setTvshows(movies)
+                tvshowsAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentTvshowsBinding.rvTvshows) {
                 layoutManager = LinearLayoutManager(context)

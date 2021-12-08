@@ -1,5 +1,9 @@
 package com.dicoding.katonmoviecatalogue.data.source.local.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class TvshowEntity(
     var tvshowId: Int,
     var title: String,
@@ -11,4 +15,4 @@ data class TvshowEntity(
     var description: String,
     var watchlist: Boolean = false,
     var image: String
-)
+) : Parcelable

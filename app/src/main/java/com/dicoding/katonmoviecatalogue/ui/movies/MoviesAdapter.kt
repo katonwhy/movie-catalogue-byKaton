@@ -4,12 +4,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.databinding.ItemsMovieBinding
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailMovieActivity
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.API_IMAGE
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.IMAGE_SIZE
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.setImage
 
 class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
     private var listMovies = ArrayList<MovieEntity>()
@@ -24,22 +24,21 @@ class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.
         fun bind(movie: MovieEntity) {
             with(binding) {
                 tvItemTitle.text = movie.title
-                tvItemGenre.text = movie.genre
-                tvDuration.text = movie.duration
                 tvRelease.text = movie.release
-                tvRating.text = movie.rating
+                tvRating.text = movie.rating.toString()
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailMovieActivity::class.java)
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie.movieId)
                     itemView.context.startActivity(intent)
                 }
+
                 imgShare.setOnClickListener { callback.onShareClick(movie) }
-                Glide.with(itemView.context)
-                    .load(movie.image)
-                    .apply(
-                        RequestOptions.placeholderOf(R.drawable.ic_loading)
-                        .error(R.drawable.ic_error))
-                    .into(imgPoster)
+
+                movie.image.let { image ->
+                    with(imgPoster){
+                        setImage(itemView.context, API_IMAGE + IMAGE_SIZE + image, imgPoster)
+                    }
+                }
             }
         }
     }

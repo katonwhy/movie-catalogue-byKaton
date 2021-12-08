@@ -2,6 +2,8 @@ package com.dicoding.katonmoviecatalogue.ui.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -10,6 +12,8 @@ import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.ActivityDetailTvshowBinding
 import com.dicoding.katonmoviecatalogue.databinding.ContentDetailTvshowBinding
+import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
+import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
 
 class DetailTvshowActivity : AppCompatActivity() {
 
@@ -24,34 +28,45 @@ class DetailTvshowActivity : AppCompatActivity() {
         setSupportActionBar(activityDetailTvshowBinding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[DetailTvshowViewModel::class.java]
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailTvshowViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
-            val tvshowId = extras.getString(DetailTvshowActivity.EXTRA_TVSHOW)
+            val tvshowId = extras.getInt(EXTRA_TVSHOW, 0)
             if (tvshowId != null) {
-                viewModel.setSelectedTvshow(tvshowId)
-                populateMovie(viewModel.getTvshow())
+
+                activityDetailTvshowBinding.progressBar.visibility = View.VISIBLE
+                activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+
+                viewModel.getTvshow(tvshowId).observe(this, {
+
+                    activityDetailTvshowBinding.progressBar.visibility = View.GONE
+                    activityDetailTvshowBinding.content.visibility = View.VISIBLE
+
+                    populateMovie(it)
+                })
             }
+        }
+
+        contentDetailTvshowBinding.toggleFavorite.setOnClickListener {
+            Toast.makeText(this, "Success add to Favorite", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun populateMovie(tvshowEntity: TvshowEntity) {
-        contentDetailTvshowBinding.tvTitle.text = tvshowEntity.title
-        contentDetailTvshowBinding.tvGenre.text = tvshowEntity.genre
-        contentDetailTvshowBinding.tvSeasons.text = tvshowEntity.seasons
-        contentDetailTvshowBinding.tvDirector.text = tvshowEntity.director
-        contentDetailTvshowBinding.tvRelease.text = tvshowEntity.release
-        contentDetailTvshowBinding.tvRating.text = tvshowEntity.rating
-        contentDetailTvshowBinding.tvDescription.text = tvshowEntity.description
+        with(contentDetailTvshowBinding){
 
-        Glide.with(this)
-            .load(tvshowEntity.image)
-            .transform(RoundedCorners(40))
-            .apply(
-                RequestOptions.placeholderOf(R.drawable.ic_loading)
-                    .error(R.drawable.ic_error))
-            .into(contentDetailTvshowBinding.ivTvshowPoster)
+            tvTitle.text = tvshowEntity.title
+            tvGenre.text = tvshowEntity.genre
+            tvSeasons.text = resources.getString(R.string.seasons, tvshowEntity.seasons.toString())
+            tvRelease.text = tvshowEntity.release
+            tvRating.text = tvshowEntity.rating.toString()
+            tvDescription.text = tvshowEntity.description
+
+            ImagePathApi.setImageDetail(this@DetailTvshowActivity, ImagePathApi.API_IMAGE + ImagePathApi.IMAGE_SIZE + tvshowEntity.image, ivTvshowPoster)
+        }
+
     }
 
     companion object {

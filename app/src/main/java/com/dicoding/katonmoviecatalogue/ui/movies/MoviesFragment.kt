@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.databinding.FragmentMoviesBinding
+import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
 
 class MoviesFragment : Fragment(), MoviesFragmentCallback {
 
@@ -28,11 +29,17 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
-            val viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MoviesViewModel::class.java]
-            val movies = viewModel.getMovies()
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            val viewModel = ViewModelProvider(this, factory)[MoviesViewModel::class.java]
 
             val moviesAdapter = MoviesAdapter(this)
-            moviesAdapter.setMovies(movies)
+
+            fragmentMoviesBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
+                fragmentMoviesBinding.progressBar.visibility = View.GONE
+                moviesAdapter.setMovies(movies)
+                moviesAdapter.notifyDataSetChanged()
+            })
 
             with(fragmentMoviesBinding.rvMovies) {
                 layoutManager = LinearLayoutManager(context)
