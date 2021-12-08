@@ -51,6 +51,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt"
+
     //api
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
@@ -66,7 +68,7 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$androidTestVersion"
     androidTestImplementation "androidx.test:rules:$androidTestVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
-    
+
     testImplementation "org.mockito:mockito-core:3.6.0"
     testImplementation "org.mockito:mockito-inline:3.6.0"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
