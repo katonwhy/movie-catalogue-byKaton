@@ -7,11 +7,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.katonmoviecatalogue.R
-import com.dicoding.katonmoviecatalogue.data.MovieEntity
-import com.dicoding.katonmoviecatalogue.data.TvshowEntity
-import com.dicoding.katonmoviecatalogue.databinding.ActivityDetailMovieBinding
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.ActivityDetailTvshowBinding
-import com.dicoding.katonmoviecatalogue.databinding.ContentDetailMovieBinding
 import com.dicoding.katonmoviecatalogue.databinding.ContentDetailTvshowBinding
 
 class DetailTvshowActivity : AppCompatActivity() {

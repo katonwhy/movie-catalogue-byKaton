@@ -9,7 +9,7 @@ import androidx.core.app.ShareCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
-import com.dicoding.katonmoviecatalogue.data.MovieEntity
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.databinding.FragmentMoviesBinding
 
 class MoviesFragment : Fragment(), MoviesFragmentCallback {

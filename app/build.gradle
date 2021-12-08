@@ -16,6 +16,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        buildConfigField("String", "API_KEY", "\"3f2a312467e95f04d1568367c855f08a\"")
     }
 
     buildTypes {
@@ -49,7 +51,14 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //api
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
     //testing
+    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
+
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
@@ -57,4 +66,9 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$androidTestVersion"
     androidTestImplementation "androidx.test:rules:$androidTestVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtversion"
+    
+    testImplementation "org.mockito:mockito-core:3.6.0"
+    testImplementation "org.mockito:mockito-inline:3.6.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 }

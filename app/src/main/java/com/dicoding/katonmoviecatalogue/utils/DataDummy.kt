@@ -1,8 +1,8 @@
 package com.dicoding.katonmoviecatalogue.utils
 
 import com.dicoding.katonmoviecatalogue.R
-import com.dicoding.katonmoviecatalogue.data.MovieEntity
-import com.dicoding.katonmoviecatalogue.data.TvshowEntity
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 
 object DataDummy {
 
@@ -22,7 +22,8 @@ object DataDummy {
                 "After falling in love with struggling artist Ally, Jackson, a musician, coaxes her to follow her dreams, while he battles with alcoholism and his personal demons.",
                 false,
                 R.drawable.poster_a_start_is_born
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m2",
@@ -35,7 +36,8 @@ object DataDummy {
                 "Alita, a battle cyborg, is revived by Ido, a doctor, who realises that she actually has the soul of a teenager. Alita then sets out to learn about her past and find her true identity.",
                 false,
                 R.drawable.poster_alita
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m3",
@@ -48,7 +50,8 @@ object DataDummy {
                 "Half-human, half-Atlantean Arthur is born with the ability to communicate with marine creatures. He goes on a quest to retrieve the legendary Trident of Atlan and protect the water world.",
                 false,
                 R.drawable.poster_aquaman
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m4",
@@ -61,7 +64,8 @@ object DataDummy {
                 "With his impeccable vocal abilities, Freddie Mercury and his rock band, Queen, achieve superstardom. However, amidst his skyrocketing success, he grapples with his ego, sexuality and a fatal illness.",
                 false,
                 R.drawable.poster_bohemian
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m5",
@@ -74,7 +78,8 @@ object DataDummy {
                 "Nels Coxman, a snowplow driver, celebrates his 'Citizen of the Year' award. However, his life turns upside down when his son dies due to a forced heroin overdose.",
                 false,
                 R.drawable.poster_cold_persuit
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m6",
@@ -87,7 +92,8 @@ object DataDummy {
                 "In 1985, Ivan Drago killed Apollo Creed in a tragic boxing match. Under the guidance of his trainer Rocky, Apollo's son Adonis confronts Drago's son in an ultimate showdown.",
                 false,
                 R.drawable.poster_creed
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m7",
@@ -100,7 +106,8 @@ object DataDummy {
                 "Gellert Grindelwald plans to raise an army of wizards to rule over non-magical beings. In response, Newt Scamander's former professor, Albus Dumbledore, seeks his help to stop him.",
                 false,
                 R.drawable.poster_crimes
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m8",
@@ -113,7 +120,8 @@ object DataDummy {
                 "While David confronts Kevin, a group of armed men intervene. Now locked in a mental facility with Elijah, the two find their superhuman abilities being questioned by Ellie, a secretive psychiatrist.",
                 false,
                 R.drawable.poster_glass
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m9",
@@ -126,7 +134,8 @@ object DataDummy {
                 "Hiccup aims to unite the vikings and the dragons in order to bring peace on the island of Berk. However, he must stop the evil Grimmel and his devious plans to wipe out all dragons.",
                 false,
                 R.drawable.poster_how_to_train
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m10",
@@ -139,7 +148,8 @@ object DataDummy {
                 "The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.",
                 false,
                 R.drawable.poster_infinity_war
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m11",
@@ -152,7 +162,8 @@ object DataDummy {
                 "Mary Stuart returns to Scotland in order to claim her rightful throne. She attempts to overthrow her cousin Elizabeth I, Queen of England, but finds herself condemned to years of imprisonment.",
                 false,
                 R.drawable.poster_marry_queen
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m12",
@@ -165,7 +176,8 @@ object DataDummy {
                 "A martial artist decides to lay low following his humiliating loss to the famous Ip Man. However, various circumstances put him in the cross hairs of a powerful drug smuggler of foreign descent.",
                 false,
                 R.drawable.poster_master_z
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m13",
@@ -178,7 +190,8 @@ object DataDummy {
                 "In a post-apocalyptic world where cities move and consume each other to survive, two strangers come together to stop a sinister and destructive conspiracy.",
                 false,
                 R.drawable.poster_mortal_engines
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m14",
@@ -191,7 +204,8 @@ object DataDummy {
                 "Towards the end of World War II, American paratroopers set out to destroy a German radio tower. Soon enough, things take a murky turn when they come across a vicious secret.",
                 false,
                 R.drawable.poster_overlord
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m15",
@@ -204,7 +218,8 @@ object DataDummy {
                 "Ralph and his best friend, Vanellope, face various challenges as they visit the uncharted land of the Internet through a Wi-Fi router at the arcade to save the game, Sugar Rush.",
                 false,
                 R.drawable.poster_ralph
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m16",
@@ -217,7 +232,8 @@ object DataDummy {
                 "Lord Robin of Loxley seeks vengeance after he returns from the Third Crusade to find that the corrupt Sheriff of Nottingham has declared him dead and claimed all his property.",
                 false,
                 R.drawable.poster_robin_hood
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m17",
@@ -230,7 +246,8 @@ object DataDummy {
                 "Baker Dill enjoys his tranquil life in Plymouth Island. However, his life turns upside down when his ex-wife, Karen, tracks him down and offers him \$10 million to get rid of her abusive new husband.",
                 false,
                 R.drawable.poster_serenity
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m18",
@@ -243,7 +260,8 @@ object DataDummy {
                 "After gaining superpowers from a spider bite, Miles Morales protects the city as Spider-Man. Soon, he meets alternate versions of himself and gets embroiled in an epic battle to save the multiverse.",
                 false,
                 R.drawable.poster_spiderman
-            ))
+            )
+        )
         movies.add(
             MovieEntity(
                 "m19",
@@ -256,7 +274,8 @@ object DataDummy {
                 "A group of brave soldiers, who are held captive in a German concentration camp, devises a plan to evade in their heavily damaged T-34 tank during World War II.",
                 false,
                 R.drawable.poster_t34
-            ))
+            )
+        )
 
         return movies
     }
@@ -277,7 +296,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_arrow
-        ))
+        )
+        )
         tvshows.add(
             TvshowEntity(
                 "t2",
@@ -290,7 +310,8 @@ object DataDummy {
                 "Doom Patrol is a team of traumatized and downtrodden superheroes, each of whom has suffered a horrible accident that gave them superhuman abilities but also left them scarred and disfigured. The members of the team have found their purpose through The Chief and have come together to investigate some of the world's weirdest phenomena. After The Chief mysteriously disappears, though, the reluctant heroes find themselves called to action by Cyborg, who comes to them with a mission that they cannot refuse. Doom Patrol -- part support group, part superhero team -- is a band of superpowered freaks fighting for a world that wants nothing to do with them.",
                 false,
                 R.drawable.poster_doom_patrol
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t3",
@@ -303,7 +324,8 @@ object DataDummy {
                 "Goku and Bulma's search continues for the seven Dragonballs, while he met new friends and fearsome enemies in his journey",
                 false,
                 R.drawable.poster_dragon_ball
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t4",
@@ -316,7 +338,8 @@ object DataDummy {
                 "Lucy, a celestial wizard, meets and befriends Natsu, a dragon slayer wizard. They, along with others from the Fairy Tail guild, embark on various paid missions to fight crime and wrongdoings.",
                 false,
                 R.drawable.poster_fairytail
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t5",
@@ -329,7 +352,8 @@ object DataDummy {
                 "Peter Griffin and his family of two teenagers, a smart dog, a devilish baby and his wife find themselves in some of the most hilarious scenarios.",
                 false,
                 R.drawable.poster_family_guy
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t6",
@@ -342,7 +366,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_flash
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t7",
@@ -355,7 +380,8 @@ object DataDummy {
                 "Nine noble families wage war against each other in order to gain control over the mythical land of Westeros. Meanwhile, a force is rising after millenniums and threatens the existence of living men.",
                 false,
                 R.drawable.poster_god
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t8",
@@ -368,7 +394,8 @@ object DataDummy {
                 "Detective James Gordon is a new recruit assigned to investigate the murder of Thomas and Martha Wayne. The case acquaints him with the slain couple's son and future crusader, Bruce.",
                 false,
                 R.drawable.poster_gotham
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t9",
@@ -381,7 +408,8 @@ object DataDummy {
                 "Surgical interns and their supervisors embark on a medical journey where they become part of heart-wrenching stories and make life-changing decisions in order to become the finest doctors.",
                 false,
                 R.drawable.poster_grey_anatomy
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t10",
@@ -394,7 +422,8 @@ object DataDummy {
                 "Hanna is an extraordinary girl who has been raised in the forest, evading the relentless pursuit of an off-the-book CIA agent. This series -- part high-concept thriller, part coming-of-age drama -- follows the girl on her journey as she tries to unearth the truth behind who she is. \"Hanna\" is based on the 2011 film of the same name that starred Oscar-nominated actress Saoirse Ronan in the title role.",
                 false,
                 R.drawable.poster_hanna
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t11",
@@ -407,7 +436,8 @@ object DataDummy {
                 "Danny Rand decides it is time to return to New York after 15 years. Things take a turn when he tries to claim his family's company from Harold Meachum.",
                 false,
                 R.drawable.poster_iron_fist
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t12",
@@ -420,7 +450,8 @@ object DataDummy {
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 R.drawable.poster_naruto_shipudden
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t13",
@@ -433,7 +464,8 @@ object DataDummy {
                 "Special Agent Leroy Jethro Gibbs is a skilled investigator. He leads a team of agents of the Naval Criminal Investigative Service's Major Case Response Team as they solve intense criminal cases.",
                 false,
                 R.drawable.poster_ncis
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t14",
@@ -446,7 +478,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_riverdale
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t15",
@@ -459,7 +492,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_shameless
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t16",
@@ -472,7 +506,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_supergirl
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t17",
@@ -485,7 +520,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_supernatural
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t18",
@@ -498,7 +534,8 @@ object DataDummy {
                 "Working-class father Homer Simpson and his dysfunctional family deal with comical situations and the ups-and-downs of life in the town of Springfield.",
                 false,
                 R.drawable.poster_the_simpson
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t19",
@@ -511,7 +548,8 @@ object DataDummy {
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 R.drawable.poster_the_umbrella
-            ))
+            )
+        )
         tvshows.add(
             TvshowEntity(
                 "t20",
@@ -524,7 +562,8 @@ object DataDummy {
                 "In the wake of a zombie apocalypse, various survivors struggle to stay alive. As they search for safety and evade the undead, they are forced to grapple with rival groups and difficult choices.",
                 false,
                 R.drawable.poster_the_walking_dead
-            ))
+            )
+        )
 
         return tvshows
     }

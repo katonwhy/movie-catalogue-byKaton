@@ -1,7 +1,7 @@
 package com.dicoding.katonmoviecatalogue.ui.detail
 
 import androidx.lifecycle.ViewModel
-import com.dicoding.katonmoviecatalogue.data.TvshowEntity
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.utils.DataDummy
 
 class DetailTvshowViewModel: ViewModel() {

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.katonmoviecatalogue.R
-import com.dicoding.katonmoviecatalogue.data.TvshowEntity
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.ItemsTvshowBinding
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailTvshowActivity
 
