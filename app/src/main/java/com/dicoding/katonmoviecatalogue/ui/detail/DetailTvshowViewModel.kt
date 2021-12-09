@@ -8,7 +8,6 @@ import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepos
 import com.dicoding.katonmoviecatalogue.utils.DataDummy
 
 class DetailTvshowViewModel (private val movieRepository: MovieRepository): ViewModel() {
-    private lateinit var tvshowId: String
 
     fun getTvshow(id : Int) : LiveData<TvshowEntity> = movieRepository.getDetailTvShow(id)
 }
