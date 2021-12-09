@@ -6,7 +6,6 @@ import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.data.source.remote.RemoteDataSource
 import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieDataSource
-import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.DetailMovies
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.DetailTvShow
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.Movies

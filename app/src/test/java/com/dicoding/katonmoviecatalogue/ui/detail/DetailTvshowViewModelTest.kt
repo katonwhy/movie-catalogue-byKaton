@@ -3,7 +3,6 @@ package com.dicoding.katonmoviecatalogue.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.utils.DataDummy
@@ -15,7 +14,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
