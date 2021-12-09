@@ -33,6 +33,7 @@ class HomeActivityTest {
     @Test
     fun loadMovies() {
         onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(20)) //sesuai result api terdapat 20 item per page nya
     }
 
     @Test
@@ -52,6 +53,7 @@ class HomeActivityTest {
     fun loadTvshows() {
         onView(withText("SERIES")).perform(click())
         onView(withId(R.id.rv_tvshows)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tvshows)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(20)) //sesuai result api terdapat 20 item per page nya
     }
 
     @Test
