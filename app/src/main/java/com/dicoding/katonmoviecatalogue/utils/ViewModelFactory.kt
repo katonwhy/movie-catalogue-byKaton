@@ -3,7 +3,7 @@ package com.dicoding.katonmoviecatalogue.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.katonmoviecatalogue.data.source.remote.repository.MovieRepository
+import com.dicoding.katonmoviecatalogue.data.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.di.Injection
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailMovieViewModel
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailTvshowViewModel

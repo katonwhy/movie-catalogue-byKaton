@@ -19,7 +19,7 @@ class LocalDataSource(private val mFilmDao: FilmDao) {
 
     fun getFavMovies(): LiveData<List<MovieEntity>> = mFilmDao.getFavMovies()
 
-    fun getAllTvShows(sort: String): LiveData<List<TvshowEntity>> = mFilmDao.getTvShows()
+    fun getAllTvShows(): LiveData<List<TvshowEntity>> = mFilmDao.getTvShows()
 
     fun getTvShowById(id: Int): LiveData<TvshowEntity> = mFilmDao.getTvShowById(id)
 
