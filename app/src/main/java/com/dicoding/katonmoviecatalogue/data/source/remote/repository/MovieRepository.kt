@@ -42,8 +42,7 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
                             image = i.poster,
                             rating = i.rating,
                             genre = "",
-                            duration = i.runtime,
-                            director = ""
+                            duration = i.runtime
                         )
                         moviesData.add(movie)
                     }
@@ -77,7 +76,6 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
                         image = responseMovie.poster,
                         rating = responseMovie.rating,
                         duration = responseMovie.runtime,
-                        director = "",
                         genre = genres.toString()
                     )
 
@@ -104,7 +102,6 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
                             rating = i.rating,
                             genre = "",
                             seasons = 0,
-                            director = ""
                         )
                         tvshows.add(tv)
                     }
@@ -139,7 +136,6 @@ class MovieRepository private constructor(private val remoteDataSource: RemoteDa
                         image = responseTv.poster,
                         rating = responseTv.rating,
                         seasons = responseTv.seasons,
-                        director = "",
                         genre = genre.toString()
                     )
                     dataTv.postValue(tv)

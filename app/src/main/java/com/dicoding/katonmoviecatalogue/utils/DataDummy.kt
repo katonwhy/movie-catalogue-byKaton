@@ -19,7 +19,6 @@ object DataDummy {
                 7.6,
                 "October 19, 2018",
                 214,
-                "Bradley Cooper",
                 "After falling in love with struggling artist Ally, Jackson, a musician, coaxes her to follow her dreams, while he battles with alcoholism and his personal demons.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -33,7 +32,6 @@ object DataDummy {
                 7.3,
                 "February 5, 2019",
                 212,
-                "Robert Rodriguez",
                 "Alita, a battle cyborg, is revived by Ido, a doctor, who realises that she actually has the soul of a teenager. Alita then sets out to learn about her past and find her true identity.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -47,7 +45,6 @@ object DataDummy {
                 6.9,
                 "December 21, 2018",
                 222,
-                "James Wan",
                 "Half-human, half-Atlantean Arthur is born with the ability to communicate with marine creatures. He goes on a quest to retrieve the legendary Trident of Atlan and protect the water world.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -61,7 +58,6 @@ object DataDummy {
                 7.9,
                 "October 27, 2018",
                 213,
-                "Bryan Singer, Dexter Fletcher",
                 "With his impeccable vocal abilities, Freddie Mercury and his rock band, Queen, achieve superstardom. However, amidst his skyrocketing success, he grapples with his ego, sexuality and a fatal illness.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -75,7 +71,6 @@ object DataDummy {
                 6.2,
                 "February 15, 2019",
                 138,
-                "Hans Petter Moland",
                 "Nels Coxman, a snowplow driver, celebrates his 'Citizen of the Year' award. However, his life turns upside down when his son dies due to a forced heroin overdose.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -89,7 +84,6 @@ object DataDummy {
                 7.1,
                 "November 28, 2018",
                 210,
-                "Steven Caple Jr.",
                 "In 1985, Ivan Drago killed Apollo Creed in a tragic boxing match. Under the guidance of his trainer Rocky, Apollo's son Adonis confronts Drago's son in an ultimate showdown.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -103,7 +97,6 @@ object DataDummy {
                 6.5,
                 "November 14, 2018",
                 213,
-                "David Yates",
                 "Gellert Grindelwald plans to raise an army of wizards to rule over non-magical beings. In response, Newt Scamander's former professor, Albus Dumbledore, seeks his help to stop him.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -117,7 +110,6 @@ object DataDummy {
                 6.6,
                 "January 16, 2019",
                 291,
-                "M. Night Shyamalan",
                 "While David confronts Kevin, a group of armed men intervene. Now locked in a mental facility with Elijah, the two find their superhuman abilities being questioned by Ellie, a secretive psychiatrist.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -131,7 +123,6 @@ object DataDummy {
                 7.5,
                 "January 9, 2019",
                 144,
-                "Dean DeBlois",
                 "Hiccup aims to unite the vikings and the dragons in order to bring peace on the island of Berk. However, he must stop the evil Grimmel and his devious plans to wipe out all dragons.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -145,7 +136,6 @@ object DataDummy {
                 8.4,
                 "April 25, 2018",
                 229,
-                "Anthony Russo, Joe Russo",
                 "The Avengers must stop Thanos, an intergalactic warlord, from getting his hands on all the infinity stones. However, Thanos is prepared to go to any lengths to carry out his insane plan.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -159,7 +149,6 @@ object DataDummy {
                 6.3,
                 "January 18, 2019",
                 124,
-                "Josie Rourke",
                 "Mary Stuart returns to Scotland in order to claim her rightful throne. She attempts to overthrow her cousin Elizabeth I, Queen of England, but finds herself condemned to years of imprisonment.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -173,7 +162,6 @@ object DataDummy {
                 6.5,
                 "December 29, 2018",
                 123,
-                "Yuen Woo-ping",
                 "A martial artist decides to lay low following his humiliating loss to the famous Ip Man. However, various circumstances put him in the cross hairs of a powerful drug smuggler of foreign descent.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -187,7 +175,6 @@ object DataDummy {
                 6.1,
                 "December 13, 2018",
                 218,
-                "Christian Rivers",
                 "In a post-apocalyptic world where cities move and consume each other to survive, two strangers come together to stop a sinister and destructive conspiracy.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -201,7 +188,6 @@ object DataDummy {
                 6.6,
                 "October 7, 2018",
                 148,
-                "Julius Avery",
                 "Towards the end of World War II, American paratroopers set out to destroy a German radio tower. Soon enough, things take a murky turn when they come across a vicious secret.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -215,7 +201,6 @@ object DataDummy {
                 7.6,
                 "October 19, 2018",
                 214,
-                "Phil Johnston, Rich Moore",
                 "Ralph and his best friend, Vanellope, face various challenges as they visit the uncharted land of the Internet through a Wi-Fi router at the arcade to save the game, Sugar Rush.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -229,7 +214,6 @@ object DataDummy {
                 5.3,
                 "November 20, 2018",
                 214,
-                "Bradley Cooper",
                 "Lord Robin of Loxley seeks vengeance after he returns from the Third Crusade to find that the corrupt Sheriff of Nottingham has declared him dead and claimed all his property.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -243,7 +227,6 @@ object DataDummy {
                 5.4,
                 "January 19, 2018",
                 214,
-                "Steven Knight",
                 "Baker Dill enjoys his tranquil life in Plymouth Island. However, his life turns upside down when his ex-wife, Karen, tracks him down and offers him \$10 million to get rid of her abusive new husband.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -257,7 +240,6 @@ object DataDummy {
                 8.4,
                 "December 12, 2018",
                 156,
-                " Peter Ramsey, Bob Persichetti, Rodney Rothman",
                 "After gaining superpowers from a spider bite, Miles Morales protects the city as Spider-Man. Soon, he meets alternate versions of himself and gets embroiled in an epic battle to save the multiverse.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -271,7 +253,6 @@ object DataDummy {
                 6.7,
                 "January 19, 2018",
                 214,
-                "Bradley Cooper",
                 "A group of brave soldiers, who are held captive in a German concentration camp, devises a plan to evade in their heavily damaged T-34 tank during World War II.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -293,7 +274,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2017",
                 3,
-                "David Nuttler",
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -307,7 +287,6 @@ object DataDummy {
                 7.9,
                 "February 15, 2019",
                 3,
-                "Arnold Drake; Bob Haney; Bruno Premiani",
                 "Doom Patrol is a team of traumatized and downtrodden superheroes, each of whom has suffered a horrible accident that gave them superhuman abilities but also left them scarred and disfigured. The members of the team have found their purpose through The Chief and have come together to investigate some of the world's weirdest phenomena. After The Chief mysteriously disappears, though, the reluctant heroes find themselves called to action by Cyborg, who comes to them with a mission that they cannot refuse. Doom Patrol -- part support group, part superhero team -- is a band of superpowered freaks fighting for a world that wants nothing to do with them.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -321,7 +300,6 @@ object DataDummy {
                 9.0,
                 "February 26, 1986",
                 9,
-                "Toshiki Inoue",
                 "Goku and Bulma's search continues for the seven Dragonballs, while he met new friends and fearsome enemies in his journey",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -335,7 +313,6 @@ object DataDummy {
                 7.5,
                 "October 12, 2009",
                 9,
-                "Hiro Mashima",
                 "Lucy, a celestial wizard, meets and befriends Natsu, a dragon slayer wizard. They, along with others from the Fairy Tail guild, embark on various paid missions to fight crime and wrongdoings.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -349,7 +326,6 @@ object DataDummy {
                 8.1,
                 "January 31, 1999",
                 19,
-                "Seth MacFarlane",
                 "Peter Griffin and his family of two teenagers, a smart dog, a devilish baby and his wife find themselves in some of the most hilarious scenarios.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -363,7 +339,6 @@ object DataDummy {
                 7.6,
                 "October 7, 2014",
                 7,
-                "David Nutter; Gabrielle Stanton",
                 "After mastering the skill of archery on a deserted island, multi-millionaire playboy Oliver Queen returns to his city to take on the vigilante persona of Arrow to fight crime and corruption.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -377,7 +352,6 @@ object DataDummy {
                 7.9,
                 "April 17, 2011",
                 8,
-                "David Benioff; D. B. Weiss",
                 "Nine noble families wage war against each other in order to gain control over the mythical land of Westeros. Meanwhile, a force is rising after millenniums and threatens the existence of living men.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -391,7 +365,6 @@ object DataDummy {
                 7.8,
                 "September 22, 2014",
                 5,
-                "Danny Cannon; Bruno Heller",
                 "Detective James Gordon is a new recruit assigned to investigate the murder of Thomas and Martha Wayne. The case acquaints him with the slain couple's son and future crusader, Bruce.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -405,7 +378,6 @@ object DataDummy {
                 7.5,
                 "March 27, 2005",
                 18,
-                "Shonda Rhimes",
                 "Surgical interns and their supervisors embark on a medical journey where they become part of heart-wrenching stories and make life-changing decisions in order to become the finest doctors.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -419,7 +391,6 @@ object DataDummy {
                 6.9,
                 "January 17, 2014",
                 6,
-                "Nuttler",
                 "Hanna is an extraordinary girl who has been raised in the forest, evading the relentless pursuit of an off-the-book CIA agent. This series -- part high-concept thriller, part coming-of-age drama -- follows the girl on her journey as she tries to unearth the truth behind who she is. \"Hanna\" is based on the 2011 film of the same name that starred Oscar-nominated actress Saoirse Ronan in the title role.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -433,7 +404,6 @@ object DataDummy {
                 6.9,
                 "March 17, 2017",
                 2,
-                "David",
                 "Danny Rand decides it is time to return to New York after 15 years. Things take a turn when he tries to claim his family's company from Harold Meachum.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -447,7 +417,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -461,7 +430,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -475,7 +443,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -489,7 +456,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -503,7 +469,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -517,7 +482,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -531,7 +495,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -545,7 +508,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
@@ -559,7 +521,6 @@ object DataDummy {
                 7.9,
                 "November 17, 2007",
                 21,
-                "Masashi Kishimoto",
                 "Naruto, an adolescent ninja, dreams of becoming the Hokage in his village.",
                 false,
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
