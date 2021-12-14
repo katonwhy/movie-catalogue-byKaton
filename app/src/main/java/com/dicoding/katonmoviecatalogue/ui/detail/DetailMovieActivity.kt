@@ -21,10 +21,11 @@ import com.dicoding.katonmoviecatalogue.vo.Status
 class DetailMovieActivity : AppCompatActivity() {
 
     private lateinit var contentDetailMovieBinding: ContentDetailMovieBinding
+    private lateinit var activityDetailMovieBinding: ActivityDetailMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val activityDetailMovieBinding = ActivityDetailMovieBinding.inflate(layoutInflater)
+        activityDetailMovieBinding = ActivityDetailMovieBinding.inflate(layoutInflater)
         contentDetailMovieBinding = activityDetailMovieBinding.detailContent
         setContentView(activityDetailMovieBinding.root)
 
@@ -39,24 +40,18 @@ class DetailMovieActivity : AppCompatActivity() {
             val movieId = extras.getInt(EXTRA_MOVIE, 0)
             if (movieId != null) {
 
-                //activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
-                //activityDetailMovieBinding.content.visibility = View.INVISIBLE
-
-                //activityDetailMovieBinding.progressBar.visibility = View.GONE
-                //activityDetailMovieBinding.content.visibility = View.VISIBLE
-
                 viewModel.getMovie(movieId).observe(this, { detail ->
                     when (detail.status) {
-                        Status.LOADING -> activityDetailMovieBinding.content.visibility = View.INVISIBLE
+                        Status.LOADING -> showProgressBar()
 
                         Status.SUCCESS -> {
                             if (detail.data != null) {
-                                activityDetailMovieBinding.content.visibility = View.VISIBLE
+                                hideProgressBar()
                                 populateMovie(detail.data)
                             }
                         }
                         Status.ERROR -> {
-                            activityDetailMovieBinding.content.visibility = View.INVISIBLE
+                            showProgressBar()
                             Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -86,6 +81,20 @@ class DetailMovieActivity : AppCompatActivity() {
             ImagePathApi.setImageDetail(this@DetailMovieActivity, API_IMAGE + IMAGE_SIZE + movieEntity.image, ivMoviePoster)
 
         }
+    }
+
+    private fun showProgressBar() {
+        activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
+        activityDetailMovieBinding.content.visibility = View.INVISIBLE
+    }
+
+    private fun hideProgressBar() {
+        activityDetailMovieBinding.progressBar.visibility = View.GONE
+        activityDetailMovieBinding.content.visibility = View.VISIBLE
+    }
+
+    private fun setFavoriteState(state: Boolean) {
+        contentDetailMovieBinding.toggleFavorite.isChecked = state
     }
 
     companion object {

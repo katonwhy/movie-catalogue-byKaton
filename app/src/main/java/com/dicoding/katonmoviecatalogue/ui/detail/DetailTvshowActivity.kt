@@ -19,10 +19,11 @@ import com.dicoding.katonmoviecatalogue.vo.Status
 class DetailTvshowActivity : AppCompatActivity() {
 
     private lateinit var contentDetailTvshowBinding: ContentDetailTvshowBinding
+    private lateinit var activityDetailTvshowBinding: ActivityDetailTvshowBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val activityDetailTvshowBinding =ActivityDetailTvshowBinding.inflate(layoutInflater)
+        activityDetailTvshowBinding =ActivityDetailTvshowBinding.inflate(layoutInflater)
         contentDetailTvshowBinding = activityDetailTvshowBinding.detailContent
         setContentView(activityDetailTvshowBinding.root)
 
@@ -37,24 +38,18 @@ class DetailTvshowActivity : AppCompatActivity() {
             val tvshowId = extras.getInt(EXTRA_TVSHOW, 0)
             if (tvshowId != null) {
 
-                //activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
-                //activityDetailMovieBinding.content.visibility = View.INVISIBLE
-
-                //activityDetailMovieBinding.progressBar.visibility = View.GONE
-                //activityDetailMovieBinding.content.visibility = View.VISIBLE
-
                 viewModel.getTvshow(tvshowId).observe(this, { detail ->
                     when (detail.status) {
-                        Status.LOADING -> activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+                        Status.LOADING -> showProgressBar()
 
                         Status.SUCCESS -> {
                             if (detail.data != null) {
-                                activityDetailTvshowBinding.content.visibility = View.VISIBLE
+                                hideProgressBar()
                                 populateMovie(detail.data)
                             }
                         }
                         Status.ERROR -> {
-                            activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+                            showProgressBar()
                             Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -80,6 +75,16 @@ class DetailTvshowActivity : AppCompatActivity() {
             ImagePathApi.setImageDetail(this@DetailTvshowActivity, ImagePathApi.API_IMAGE + ImagePathApi.IMAGE_SIZE + tvshowEntity.image, ivTvshowPoster)
         }
 
+    }
+
+    private fun showProgressBar() {
+        activityDetailTvshowBinding.progressBar.visibility = View.VISIBLE
+        activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+    }
+
+    private fun hideProgressBar() {
+        activityDetailTvshowBinding.progressBar.visibility = View.GONE
+        activityDetailTvshowBinding.content.visibility = View.VISIBLE
     }
 
     companion object {
