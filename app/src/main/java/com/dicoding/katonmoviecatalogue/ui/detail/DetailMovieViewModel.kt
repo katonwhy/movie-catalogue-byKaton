@@ -7,6 +7,19 @@ import com.dicoding.katonmoviecatalogue.data.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.vo.Resource
 
 class DetailMovieViewModel (private val movieRepository: MovieRepository): ViewModel() {
+    private lateinit var detailMovie: LiveData<Resource<MovieEntity>>
 
-    fun getMovie(id : Int) : LiveData<Resource<MovieEntity>> = movieRepository.getDetailMovies(id)
+    fun setFilm(id: Int) {
+        detailMovie = movieRepository.getDetailMovies(id)
+    }
+
+    fun setFavoriteMovie() {
+        val resource = detailMovie.value
+        if (resource?.data != null) {
+            val newState = !resource.data.watchlist
+            movieRepository.setFavoriteMovie(resource.data, newState)
+        }
+    }
+
+    fun getMovie() = detailMovie
 }

@@ -22,6 +22,7 @@ class DetailMovieActivity : AppCompatActivity() {
 
     private lateinit var contentDetailMovieBinding: ContentDetailMovieBinding
     private lateinit var activityDetailMovieBinding: ActivityDetailMovieBinding
+    private lateinit var viewModel: DetailMovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +34,33 @@ class DetailMovieActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
             val movieId = extras.getInt(EXTRA_MOVIE, 0)
-            if (movieId != null) {
 
-                viewModel.getMovie(movieId).observe(this, { detail ->
+            if (movieId != null) {
+                viewModel.setFilm(movieId)
+
+                viewModel.getMovie().observe(this, { detail ->
                     when (detail.status) {
                         Status.LOADING -> showProgressBar()
 
                         Status.SUCCESS -> {
                             if (detail.data != null) {
                                 hideProgressBar()
+                                //populate detail page
                                 populateMovie(detail.data)
+
+                                //check status of favorite data, true or false
+                                val state = detail.data.watchlist
+
+                                //set Favorite Toggle to data condition if true -> Red-heart vice versa
+                                setFavoriteState(state)
+
+                                //change data when FavToggle is pressed
+                                onToggleFavoriteClicked(state)
                             }
                         }
                         Status.ERROR -> {
@@ -59,9 +72,6 @@ class DetailMovieActivity : AppCompatActivity() {
             }
         }
 
-        contentDetailMovieBinding.toggleFavorite.setOnClickListener {
-            Toast.makeText(this, "Success add to Favorite", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun populateMovie(movieEntity: MovieEntity) {
@@ -83,6 +93,22 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
+    private fun setFavoriteState(state: Boolean) {
+        contentDetailMovieBinding.toggleFavorite.isChecked = state
+    }
+
+    private fun onToggleFavoriteClicked(state: Boolean){
+        contentDetailMovieBinding.toggleFavorite.setOnClickListener {
+            viewModel.setFavoriteMovie()
+
+            if (state){
+                Toast.makeText(this, " Deleted from Watchlist", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, " Success added to Watchlist", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun showProgressBar() {
         activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
         activityDetailMovieBinding.content.visibility = View.INVISIBLE
@@ -91,10 +117,6 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun hideProgressBar() {
         activityDetailMovieBinding.progressBar.visibility = View.GONE
         activityDetailMovieBinding.content.visibility = View.VISIBLE
-    }
-
-    private fun setFavoriteState(state: Boolean) {
-        contentDetailMovieBinding.toggleFavorite.isChecked = state
     }
 
     companion object {
