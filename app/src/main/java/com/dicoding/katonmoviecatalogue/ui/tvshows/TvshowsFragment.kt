@@ -5,17 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.FragmentTvshowsBinding
+import com.dicoding.katonmoviecatalogue.ui.movies.MoviesAdapter
 import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
+import com.dicoding.katonmoviecatalogue.vo.Resource
+import com.dicoding.katonmoviecatalogue.vo.Status
 
 class TvshowsFragment : Fragment(), TvshowsFragmentCallback {
 
     private lateinit var fragmentTvshowsBinding: FragmentTvshowsBinding
+    private lateinit var tvshowsAdapter: TvshowsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,19 +39,33 @@ class TvshowsFragment : Fragment(), TvshowsFragmentCallback {
             val factory = ViewModelFactory.getInstance(requireActivity())
             val viewModel = ViewModelProvider(this, factory)[TvshowsViewModel::class.java]
 
-            val tvshowsAdapter = TvshowsAdapter(this)
+            tvshowsAdapter = TvshowsAdapter(this)
 
             fragmentTvshowsBinding.progressBar.visibility = View.VISIBLE
-            viewModel.getTvshows().observe(viewLifecycleOwner, { movies ->
-                fragmentTvshowsBinding.progressBar.visibility = View.GONE
-                tvshowsAdapter.setTvshows(movies)
-                tvshowsAdapter.notifyDataSetChanged()
-            })
+            viewModel.getTvshows().observe(viewLifecycleOwner, tvShowObserver)
 
             with(fragmentTvshowsBinding.rvTvshows) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvshowsAdapter
+            }
+        }
+    }
+
+    private val tvShowObserver = Observer<Resource<List<TvshowEntity>>> { tvShows ->
+        if (tvShows != null) {
+            when (tvShows.status) {
+                Status.LOADING -> fragmentTvshowsBinding.progressBar.visibility = View.VISIBLE
+                Status.SUCCESS -> {
+                    fragmentTvshowsBinding.progressBar.visibility = View.GONE
+                    tvshowsAdapter.setTvshows(tvShows.data)
+                    //moviesAdapter.setOnItemClickCallback(this)
+                    tvshowsAdapter.notifyDataSetChanged()
+                }
+                Status.ERROR -> {
+                    fragmentTvshowsBinding.progressBar.visibility = View.GONE
+                    Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

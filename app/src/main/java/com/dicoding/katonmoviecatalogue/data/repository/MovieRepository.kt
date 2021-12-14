@@ -174,7 +174,7 @@ class MovieRepository private constructor(
                     image = data.poster,
                     rating = data.rating,
                     seasons = data.seasons,
-                    genre = data.toString(),
+                    genre = genres.toString(),
                     watchlist = false
                 )
                 localDataSource.updateTvShow(tv, false)

@@ -14,6 +14,7 @@ import com.dicoding.katonmoviecatalogue.databinding.ActivityDetailTvshowBinding
 import com.dicoding.katonmoviecatalogue.databinding.ContentDetailTvshowBinding
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
 import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
+import com.dicoding.katonmoviecatalogue.vo.Status
 
 class DetailTvshowActivity : AppCompatActivity() {
 
@@ -36,15 +37,27 @@ class DetailTvshowActivity : AppCompatActivity() {
             val tvshowId = extras.getInt(EXTRA_TVSHOW, 0)
             if (tvshowId != null) {
 
-                activityDetailTvshowBinding.progressBar.visibility = View.VISIBLE
-                activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+                //activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
+                //activityDetailMovieBinding.content.visibility = View.INVISIBLE
 
-                viewModel.getTvshow(tvshowId).observe(this, {
+                //activityDetailMovieBinding.progressBar.visibility = View.GONE
+                //activityDetailMovieBinding.content.visibility = View.VISIBLE
 
-                    activityDetailTvshowBinding.progressBar.visibility = View.GONE
-                    activityDetailTvshowBinding.content.visibility = View.VISIBLE
+                viewModel.getTvshow(tvshowId).observe(this, { detail ->
+                    when (detail.status) {
+                        Status.LOADING -> activityDetailTvshowBinding.content.visibility = View.INVISIBLE
 
-                    populateMovie(it)
+                        Status.SUCCESS -> {
+                            if (detail.data != null) {
+                                activityDetailTvshowBinding.content.visibility = View.VISIBLE
+                                populateMovie(detail.data)
+                            }
+                        }
+                        Status.ERROR -> {
+                            activityDetailTvshowBinding.content.visibility = View.INVISIBLE
+                            Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 })
             }
         }

@@ -16,6 +16,7 @@ import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.API_IMAGE
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.IMAGE_SIZE
 import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
+import com.dicoding.katonmoviecatalogue.vo.Status
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -38,15 +39,27 @@ class DetailMovieActivity : AppCompatActivity() {
             val movieId = extras.getInt(EXTRA_MOVIE, 0)
             if (movieId != null) {
 
-                activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
-                activityDetailMovieBinding.content.visibility = View.INVISIBLE
+                //activityDetailMovieBinding.progressBar.visibility = View.VISIBLE
+                //activityDetailMovieBinding.content.visibility = View.INVISIBLE
 
-                viewModel.getMovie(movieId).observe(this, {
+                //activityDetailMovieBinding.progressBar.visibility = View.GONE
+                //activityDetailMovieBinding.content.visibility = View.VISIBLE
 
-                    activityDetailMovieBinding.progressBar.visibility = View.GONE
-                    activityDetailMovieBinding.content.visibility = View.VISIBLE
+                viewModel.getMovie(movieId).observe(this, { detail ->
+                    when (detail.status) {
+                        Status.LOADING -> activityDetailMovieBinding.content.visibility = View.INVISIBLE
 
-                    populateMovie(it)
+                        Status.SUCCESS -> {
+                            if (detail.data != null) {
+                                activityDetailMovieBinding.content.visibility = View.VISIBLE
+                                populateMovie(detail.data)
+                            }
+                        }
+                        Status.ERROR -> {
+                            activityDetailMovieBinding.content.visibility = View.INVISIBLE
+                            Toast.makeText(applicationContext, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 })
             }
         }
