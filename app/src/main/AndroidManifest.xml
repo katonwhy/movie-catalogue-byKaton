@@ -20,7 +20,13 @@
         <activity
             android:name=".ui.watchlist.WatchlistActivity"
             android:exported="true"
-            android:label="@string/watchlist"/>
+            android:parentActivityName="com.dicoding.katonmoviecatalogue.ui.home.HomeActivity"
+            android:label="@string/watchlist"
+            android:theme="@style/Theme.KatonMovieCatalogueInvertActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dicoding.katonmoviecatalogue.ui.home.HomeActivity" />
+        </activity>
         <activity
             android:name=".ui.SplashScreenActivity"
             android:exported="true"

@@ -9,6 +9,8 @@ import com.dicoding.katonmoviecatalogue.ui.detail.DetailMovieViewModel
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailTvshowViewModel
 import com.dicoding.katonmoviecatalogue.ui.movies.MoviesViewModel
 import com.dicoding.katonmoviecatalogue.ui.tvshows.TvshowsViewModel
+import com.dicoding.katonmoviecatalogue.ui.watchlist.movies.MovieWatchlistViewModel
+import com.dicoding.katonmoviecatalogue.ui.watchlist.tvshows.TvshowsWatchlistViewModel
 
 class ViewModelFactory private constructor(private val movieRepository: MovieRepository)
     : ViewModelProvider.NewInstanceFactory(){
@@ -38,6 +40,12 @@ class ViewModelFactory private constructor(private val movieRepository: MovieRep
             }
             modelClass.isAssignableFrom(DetailTvshowViewModel::class.java) -> {
                 return DetailTvshowViewModel(movieRepository) as T
+            }
+            modelClass.isAssignableFrom(MovieWatchlistViewModel::class.java) -> {
+                return MovieWatchlistViewModel(movieRepository) as T
+            }
+            modelClass.isAssignableFrom(TvshowsWatchlistViewModel::class.java) -> {
+                return TvshowsWatchlistViewModel(movieRepository) as T
             }
             else -> {
                 throw Throwable("Unknown ViewModel class" + modelClass)

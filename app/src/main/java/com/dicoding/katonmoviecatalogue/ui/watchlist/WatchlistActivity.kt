@@ -18,6 +18,8 @@ class WatchlistActivity : AppCompatActivity() {
         activityWatchlistBinding.viewPager.adapter = watchlistPagerAdapter
         activityWatchlistBinding.tabs.setupWithViewPager(activityWatchlistBinding.viewPager)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         supportActionBar?.elevation = 0f
     }
 }

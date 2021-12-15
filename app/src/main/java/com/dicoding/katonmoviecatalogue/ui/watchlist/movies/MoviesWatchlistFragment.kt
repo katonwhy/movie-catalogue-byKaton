@@ -5,56 +5,72 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
+import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
+import com.dicoding.katonmoviecatalogue.databinding.FragmentMoviesWatchlistBinding
+import com.dicoding.katonmoviecatalogue.utils.ViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class MoviesWatchlistFragment : Fragment(), MoviesFragmentCallback {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MoviesWatchlistFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MoviesWatchlistFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var fragmentWatchlistMoviesBinding: FragmentMoviesWatchlistBinding
+    private lateinit var moviesWatchlistAdapter: MovieWatchlistAdapter
+    private lateinit var viewModel: MovieWatchlistViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies_watchlist, container, false)
+        fragmentWatchlistMoviesBinding = FragmentMoviesWatchlistBinding.inflate(layoutInflater, container, false)
+        return fragmentWatchlistMoviesBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoviesWatchlistFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoviesWatchlistFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity != null) {
+            val factory = ViewModelFactory.getInstance(requireActivity())
+            viewModel = ViewModelProvider(this, factory)[MovieWatchlistViewModel::class.java]
+
+            moviesWatchlistAdapter = MovieWatchlistAdapter(this)
+
+            fragmentWatchlistMoviesBinding.progressBar.visibility = View.VISIBLE
+            viewModel.getFavMovies().observe(viewLifecycleOwner, { favMovies ->
+                if (favMovies != null) {
+                    fragmentWatchlistMoviesBinding.progressBar.visibility = View.GONE
+                    moviesWatchlistAdapter.setMovies(favMovies)
+                    moviesWatchlistAdapter.notifyDataSetChanged()
                 }
+            })
+
+            with(fragmentWatchlistMoviesBinding.rvMovies) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = moviesWatchlistAdapter
             }
+        }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getFavMovies().observe(viewLifecycleOwner, { favMovies ->
+            if (favMovies != null) {
+                moviesWatchlistAdapter.setMovies(favMovies)
+            }
+        })
+    }
+
+    override fun onShareClick(movie: MovieEntity) {
+        if (activity != null) {
+            val mimeType = "text/plain"
+            ShareCompat.IntentBuilder
+                .from(requireActivity())
+                .setType(mimeType)
+                .setText(resources.getString(R.string.share_text, movie.title))
+                .startChooser()
+        }
+    }
+
 }
