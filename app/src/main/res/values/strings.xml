@@ -23,4 +23,7 @@
     <string name="seasons_placeholder">Seasons/Episodes</string>
     <string name="share_text">Hey! This %s movie is so good, you definitely have to watch this</string>
     <string name="share_text_tvshow">Hey! This %s series is so good, you definitely have to watch this</string>
+    <string name="undo">Undo</string>
+    <string name="ok">Ok</string>
+    <string name="delete_confirm">Removed from watchlist</string>
 </resources>

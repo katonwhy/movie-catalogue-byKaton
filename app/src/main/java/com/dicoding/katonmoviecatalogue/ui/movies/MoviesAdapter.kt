@@ -3,6 +3,8 @@ package com.dicoding.katonmoviecatalogue.ui.movies
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.databinding.ItemsMovieBinding
@@ -11,7 +13,20 @@ import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.API_IMAGE
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.IMAGE_SIZE
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi.setImage
 
-class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>() {
+class MoviesAdapter(private val callback: MoviesFragmentCallback): PagedListAdapter<MovieEntity, MoviesAdapter.MovieViewHolder>(DIFF_CALLBACK) {
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem.movieId == newItem.movieId
+            }
+
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
     private var listMovies = ArrayList<MovieEntity>()
 
     fun setMovies(movies: List<MovieEntity>?) {
@@ -49,9 +64,11 @@ class MoviesAdapter(private val callback: MoviesFragmentCallback): RecyclerView.
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = listMovies[position]
-        holder.bind(movie)
+        val movie = getItem(position)
+        if (movie != null) {
+            holder.bind(movie)
+        }
     }
 
-    override fun getItemCount(): Int = listMovies.size
+    //override fun getItemCount(): Int = listMovies.size
 }

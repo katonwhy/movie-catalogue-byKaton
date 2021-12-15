@@ -3,16 +3,28 @@ package com.dicoding.katonmoviecatalogue.ui.tvshows
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.databinding.ItemsTvshowBinding
 import com.dicoding.katonmoviecatalogue.ui.detail.DetailTvshowActivity
 import com.dicoding.katonmoviecatalogue.utils.ImagePathApi
 
-class TvshowsAdapter(private val callback: TvshowsFragmentCallback): RecyclerView.Adapter<TvshowsAdapter.TvshowsViewHolder>() {
+class TvshowsAdapter(private val callback: TvshowsFragmentCallback): PagedListAdapter<TvshowEntity, TvshowsAdapter.TvshowsViewHolder>(DIFF_CALLBACK) {
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvshowEntity>() {
+            override fun areItemsTheSame(oldItem: TvshowEntity, newItem: TvshowEntity): Boolean {
+                return oldItem.tvshowId == newItem.tvshowId
+            }
+
+            override fun areContentsTheSame(oldItem: TvshowEntity, newItem: TvshowEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
     private var listTvshows = ArrayList<TvshowEntity>()
 
     fun setTvshows(tvshows: List<TvshowEntity>?) {
@@ -53,9 +65,11 @@ class TvshowsAdapter(private val callback: TvshowsFragmentCallback): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: TvshowsViewHolder, position: Int) {
-        val tvshow = listTvshows[position]
-        holder.bind(tvshow)
+        val tvshow = getItem(position)
+        if (tvshow != null) {
+            holder.bind(tvshow)
+        }
     }
 
-    override fun getItemCount(): Int = listTvshows.size
+    //override fun getItemCount(): Int = listTvshows.size
 }

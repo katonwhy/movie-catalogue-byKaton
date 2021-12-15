@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.katonmoviecatalogue.R
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
@@ -50,13 +51,13 @@ class MoviesFragment : Fragment(), MoviesFragmentCallback {
         }
     }
 
-    private val movieObserver = Observer<Resource<List<MovieEntity>>> { movies ->
+    private val movieObserver = Observer<Resource<PagedList<MovieEntity>>> { movies ->
         if (movies != null) {
             when (movies.status) {
                 Status.LOADING -> fragmentMoviesBinding.progressBar.visibility = View.VISIBLE
                 Status.SUCCESS -> {
                     fragmentMoviesBinding.progressBar.visibility = View.GONE
-                    moviesAdapter.setMovies(movies.data)
+                    moviesAdapter.submitList(movies.data)
                     //moviesAdapter.setOnItemClickCallback(this)
                     moviesAdapter.notifyDataSetChanged()
                 }

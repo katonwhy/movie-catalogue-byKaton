@@ -1,6 +1,7 @@
 package com.dicoding.katonmoviecatalogue.data.source.local
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.room.FilmDao
@@ -13,17 +14,17 @@ class LocalDataSource(private val mFilmDao: FilmDao) {
             INSTANCE ?: LocalDataSource(filmDao)
     }
 
-    fun getAllMovies(): LiveData<List<MovieEntity>> = mFilmDao.getMovies()
+    fun getAllMovies(): DataSource.Factory<Int, MovieEntity> = mFilmDao.getMovies()
 
     fun getMovieById(id: Int): LiveData<MovieEntity> = mFilmDao.getMovieById(id)
 
-    fun getFavMovies(): LiveData<List<MovieEntity>> = mFilmDao.getFavMovies()
+    fun getFavMovies(): DataSource.Factory<Int, MovieEntity> = mFilmDao.getFavMovies()
 
-    fun getAllTvShows(): LiveData<List<TvshowEntity>> = mFilmDao.getTvShows()
+    fun getAllTvShows(): DataSource.Factory<Int, TvshowEntity> = mFilmDao.getTvShows()
 
     fun getTvShowById(id: Int): LiveData<TvshowEntity> = mFilmDao.getTvShowById(id)
 
-    fun getFavTvShows(): LiveData<List<TvshowEntity>> = mFilmDao.getFavTvShows()
+    fun getFavTvShows(): DataSource.Factory<Int, TvshowEntity> = mFilmDao.getFavTvShows()
 
     fun insertMovies(movies: List<MovieEntity>) = mFilmDao.insertMovies(movies)
 
