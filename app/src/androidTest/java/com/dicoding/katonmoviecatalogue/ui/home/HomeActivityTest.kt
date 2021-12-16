@@ -3,6 +3,7 @@ package com.dicoding.katonmoviecatalogue.ui.home
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -68,6 +69,52 @@ class HomeActivityTest {
         onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
         onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadMovieWatchlist() {
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.toggle_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        //activity watchlist
+        onView(withId(R.id.menu_watchlist)).perform(click())
+        onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        //detail movie watchlist
+        onView(withId(R.id.iv_movie_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_duration)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+        //activity watchlist
+        onView(withId(R.id.toggle_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
+    fun loadTvShowWatchlist() {
+        onView(withText("SERIES")).perform(click())
+        onView(withId(R.id.rv_tvshows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.toggle_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        //activity watchlist
+        onView(withId(R.id.menu_watchlist)).perform(click())
+        onView(withText("SERIES")).perform(click())
+        onView(withId(R.id.rv_tvshows)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tvshows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        //detail tvShow watchlist
+        onView(withId(R.id.iv_tvshow_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_genre)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_seasons)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_description)).check(matches(isDisplayed()))
+        //activity watchlist
+        onView(withId(R.id.toggle_favorite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 
 }

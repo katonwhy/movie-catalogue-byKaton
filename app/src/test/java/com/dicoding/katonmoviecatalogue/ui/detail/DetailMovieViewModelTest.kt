@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.repository.MovieRepository
 import com.dicoding.katonmoviecatalogue.utils.DataDummy
+import com.dicoding.katonmoviecatalogue.vo.Resource
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.*
 import org.junit.Before
@@ -20,6 +21,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class DetailMovieViewModelTest {
     private lateinit var viewModel: DetailMovieViewModel
+
     private val dummyMovie = DataDummy.generateDummyMovies()[0]
     private val movieId = dummyMovie.movieId
 
@@ -30,7 +32,7 @@ class DetailMovieViewModelTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
-    private lateinit var observer: Observer<MovieEntity>
+    private lateinit var observer: Observer<Resource<MovieEntity>>
 
     @Before
     fun setUp() {
@@ -39,26 +41,14 @@ class DetailMovieViewModelTest {
 
     @Test
     fun getMovie() {
-        val movie = MutableLiveData<MovieEntity>()
-        movie.value = dummyMovie
+        val dummyDetailMovie = Resource.success(DataDummy.generateDummyMovies()[0])
+        val movie = MutableLiveData<Resource<MovieEntity>>()
+        movie.value = dummyDetailMovie
 
         `when`(movieRepository.getDetailMovies(movieId)).thenReturn(movie)
-        val movies = viewModel.getMovie(movieId).value as MovieEntity
-        verify(movieRepository).getDetailMovies(movieId)
 
-        assertNotNull(movies)
-        assertEquals(dummyMovie.movieId, movies.movieId)
-        assertEquals(dummyMovie.image, movies.image)
-        assertEquals(dummyMovie.title, movies.title)
-        assertEquals(dummyMovie.description, movies.description)
-        assertEquals(dummyMovie.director, movies.director)
-        assertEquals(dummyMovie.duration, movies.duration)
-        assertEquals(dummyMovie.genre, movies.genre)
-        assertEquals(dummyMovie.rating, movies.rating, 0.1)
-        assertEquals(dummyMovie.release, movies.release)
-        assertEquals(dummyMovie.watchlist, movies.watchlist)
-
-        viewModel.getMovie(movieId).observeForever(observer)
-        verify(observer).onChanged(dummyMovie)
+        viewModel.setFilm(movieId)
+        viewModel.getMovie().observeForever(observer)
+        verify(observer).onChanged(dummyDetailMovie)
     }
 }

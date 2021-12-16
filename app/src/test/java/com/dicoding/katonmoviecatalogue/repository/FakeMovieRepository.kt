@@ -2,141 +2,209 @@ package com.dicoding.katonmoviecatalogue.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.dicoding.katonmoviecatalogue.data.NetworkBoundResource
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.MovieEntity
 import com.dicoding.katonmoviecatalogue.data.source.local.entity.TvshowEntity
 import com.dicoding.katonmoviecatalogue.data.source.remote.RemoteDataSource
 import com.dicoding.katonmoviecatalogue.data.repository.MovieDataSource
+import com.dicoding.katonmoviecatalogue.data.repository.MovieRepository
+import com.dicoding.katonmoviecatalogue.data.source.local.LocalDataSource
+import com.dicoding.katonmoviecatalogue.data.source.remote.ApiResponse
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.DetailMovies
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.DetailTvShow
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.Movies
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.TvShow
+import com.dicoding.katonmoviecatalogue.utils.AppExecutors
+import com.dicoding.katonmoviecatalogue.vo.Resource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.StringBuilder
 
-class FakeMovieRepository (private val remoteDataSource: RemoteDataSource)
-    : MovieDataSource {
+class FakeMovieRepository constructor(
+    private val remoteDataSource: RemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val appExecutors: AppExecutors
+) : MovieDataSource {
 
-    override fun getAllMovies(): LiveData<List<MovieEntity>> {
-        val movieResult = MutableLiveData<List<MovieEntity>>()
-        CoroutineScope(Dispatchers.IO).launch {
-            remoteDataSource.getAllMovies(object : RemoteDataSource.LoadMovies {
-                override fun onAllMoviesReceived(responseMovies: List<Movies>) {
-                    val moviesData = ArrayList<MovieEntity>()
-                    for (i in responseMovies) {
-                        val movie = MovieEntity(
-                            movieId = i.id,
-                            title = i.title,
-                            description = i.overview,
-                            release = i.date,
-                            image = i.poster,
-                            rating = i.rating,
-                            genre = "",
-                            duration = i.runtime,
-                            director = ""
-                        )
-                        moviesData.add(movie)
-                    }
-                    movieResult.postValue(moviesData)
-                }
-            })
-        }
-        return movieResult
-    }
+    override fun getAllMovies(): LiveData<Resource<PagedList<MovieEntity>>> {
+        return object : NetworkBoundResource<PagedList<MovieEntity>, List<Movies>>(appExecutors) {
+            override fun loadFromDb(): LiveData<PagedList<MovieEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
 
-    override fun getDetailMovies(id : Int): LiveData<MovieEntity> {
-        val dataMovie = MutableLiveData<MovieEntity>()
-        CoroutineScope(Dispatchers.IO).launch {
-            remoteDataSource.getDetailMovies(id, object : RemoteDataSource.LoadDetailMovies {
-                override fun onDetailMoviesReceived(responseMovie: DetailMovies) {
-                    val genres = StringBuilder().append("")
+                return LivePagedListBuilder(localDataSource.getAllMovies(), config).build()
+            }
 
-                    for (i in responseMovie.genres!!.indices) {
-                        if (i < responseMovie.genres.size - 1) {
-                            genres.append("${responseMovie.genres[i].name}, ")
-                        } else{
-                            genres.append(responseMovie.genres[i].name)
-                        }
-                    }
+            override fun shouldFetch(data: PagedList<MovieEntity>?): Boolean =
+                data == null || data.isEmpty()
 
+            override fun createCall(): LiveData<ApiResponse<List<Movies>>> =
+                remoteDataSource.getMovies()
+
+            override fun saveCallResult(data: List<Movies>) {
+                val movieList = ArrayList<MovieEntity>()
+                for (i in data) {
                     val movie = MovieEntity(
-                        movieId = responseMovie.id,
-                        title = responseMovie.title,
-                        description = responseMovie.overview,
-                        release = responseMovie.date,
-                        image = responseMovie.poster,
-                        rating = responseMovie.rating,
-                        duration = responseMovie.runtime,
-                        director = "",
-                        genre = genres.toString()
+                        movieId = i.id,
+                        title = i.title,
+                        description = i.overview,
+                        release = i.date,
+                        image = i.poster,
+                        rating = i.rating,
+                        genre = "",
+                        duration = i.runtime
                     )
-
-                    dataMovie.postValue(movie)
+                    movieList.add(movie)
                 }
-            })
-        }
-        return dataMovie
+                localDataSource.insertMovies(movieList)
+            }
+        }.asLiveData()
     }
 
-    override fun getAllTvShow(): LiveData<List<TvshowEntity>> {
-        val tvlist = MutableLiveData<List<TvshowEntity>>()
-        CoroutineScope(Dispatchers.IO).launch {
-            remoteDataSource.getTvShows(object : RemoteDataSource.LoadTvShows{
-                override fun onAllTvReceived(responseTv: List<TvShow>) {
-                    val tvshows = ArrayList<TvshowEntity>()
-                    for (i in responseTv){
-                        val tv = TvshowEntity(
-                            tvshowId = i.id,
-                            title = i.original_name,
-                            description = i.overview,
-                            release = i.date,
-                            image = i.poster,
-                            rating = i.rating,
-                            genre = "",
-                            seasons = 0,
-                            director = ""
-                        )
-                        tvshows.add(tv)
-                    }
-                    tvlist.postValue(tvshows)
-                }
-            })
-        }
+    override fun getDetailMovies(id : Int): LiveData<Resource<MovieEntity>> {
+        return object : NetworkBoundResource<MovieEntity, DetailMovies>(appExecutors) {
+            override fun loadFromDb(): LiveData<MovieEntity> = localDataSource.getMovieById(id)
 
-        return tvlist
+            override fun shouldFetch(data: MovieEntity?): Boolean =
+                data != null && data.duration == 0 && data.genre == ""
+
+            override fun createCall(): LiveData<ApiResponse<DetailMovies>> =
+                remoteDataSource.getDetailMovie(id)
+
+            override fun saveCallResult(data: DetailMovies) {
+                val genres = StringBuilder().append("")
+
+                for (i in data.genres.indices) {
+                    if (i < data.genres.size - 1) {
+                        genres.append("${data.genres[i].name}, ")
+                    } else {
+                        genres.append(data.genres[i].name)
+                    }
+                }
+
+                val movie = MovieEntity(
+                    movieId = data.id,
+                    title = data.title,
+                    description = data.overview,
+                    release = data.date,
+                    image = data.poster,
+                    rating = data.rating,
+                    duration = data.runtime,
+                    genre = genres.toString(),
+                    watchlist = false
+                )
+                localDataSource.updateMovie(movie, false)
+            }
+        }.asLiveData()
     }
 
-    override fun getDetailTvShow(id: Int): LiveData<TvshowEntity> {
-        val dataTv = MutableLiveData<TvshowEntity>()
-        CoroutineScope(Dispatchers.IO).launch {
-            remoteDataSource.getTvShowDetail(id, object : RemoteDataSource.LoadTvShowsDetail{
-                override fun onTvShowsDetail(responseTv: DetailTvShow) {
-                    val genre = StringBuilder().append("")
+    override fun getFavoriteMovies(): LiveData<PagedList<MovieEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
 
-                    for (i in responseTv.genres.indices){
-                        if (i < responseTv.genres.size - 1){
-                            genre.append("${responseTv.genres[i].name}, ")
-                        } else {
-                            genre.append(responseTv.genres[i].name)
-                        }
-                    }
+        return LivePagedListBuilder(localDataSource.getFavMovies(), config).build()
+    }
 
+    override fun setFavoriteMovie(movie: MovieEntity, state: Boolean) {
+            localDataSource.setFavoriteMovie(movie, state)
+    }
+
+    override fun getAllTvShow(): LiveData<Resource<PagedList<TvshowEntity>>> {
+        return object : NetworkBoundResource<PagedList<TvshowEntity>, List<TvShow>>(appExecutors) {
+            override fun loadFromDb(): LiveData<PagedList<TvshowEntity>> {
+                val config = PagedList.Config.Builder()
+                    .setEnablePlaceholders(false)
+                    .setInitialLoadSizeHint(4)
+                    .setPageSize(4)
+                    .build()
+
+                return LivePagedListBuilder(localDataSource.getAllTvShows(), config).build()
+            }
+
+            override fun shouldFetch(data: PagedList<TvshowEntity>?): Boolean =
+                data == null || data.isEmpty()
+
+            override fun createCall(): LiveData<ApiResponse<List<TvShow>>> =
+                remoteDataSource.getTvShows()
+
+            override fun saveCallResult(data: List<TvShow>) {
+                val tvshows = ArrayList<TvshowEntity>()
+                for (i in data){
                     val tv = TvshowEntity(
-                        tvshowId = responseTv.id,
-                        title = responseTv.original_name,
-                        description = responseTv.overview,
-                        release = responseTv.date,
-                        image = responseTv.poster,
-                        rating = responseTv.rating,
-                        seasons = responseTv.seasons,
-                        director = "",
-                        genre = genre.toString()
+                        tvshowId = i.id,
+                        title = i.original_name,
+                        description = i.overview,
+                        release = i.date,
+                        image = i.poster,
+                        rating = i.rating,
+                        genre = "",
+                        seasons = 0,
+                        watchlist = false
                     )
-                    dataTv.postValue(tv)
+                    tvshows.add(tv)
                 }
-            })
-        }
-        return dataTv
+                localDataSource.insertTvShows(tvshows)
+            }
+        }.asLiveData()
+    }
+
+    override fun getDetailTvShow(id: Int): LiveData<Resource<TvshowEntity>> {
+        return object : NetworkBoundResource<TvshowEntity, DetailTvShow>(appExecutors) {
+            override fun loadFromDb(): LiveData<TvshowEntity> = localDataSource.getTvShowById(id)
+
+            override fun shouldFetch(data: TvshowEntity?): Boolean =
+                data != null && data.seasons == 0 && data.genre == ""
+
+            override fun createCall(): LiveData<ApiResponse<DetailTvShow>> =
+                remoteDataSource.getDetailTvShow(id)
+
+            override fun saveCallResult(data: DetailTvShow) {
+                val genres = StringBuilder().append("")
+
+                for (i in data.genres.indices) {
+                    if (i < data.genres.size - 1) {
+                        genres.append("${data.genres[i].name}, ")
+                    } else {
+                        genres.append(data.genres[i].name)
+                    }
+                }
+
+                val tv = TvshowEntity(
+                    tvshowId = data.id,
+                    title = data.original_name,
+                    description = data.overview,
+                    release = data.date,
+                    image = data.poster,
+                    rating = data.rating,
+                    seasons = data.seasons,
+                    genre = genres.toString(),
+                    watchlist = false
+                )
+                localDataSource.updateTvShow(tv, false)
+            }
+        }.asLiveData()
+    }
+
+    override fun getFavoriteTvShows(): LiveData<PagedList<TvshowEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+
+        return LivePagedListBuilder(localDataSource.getFavTvShows(), config).build()
+    }
+
+    override fun setFavoriteTvShow(tvShow: TvshowEntity, state: Boolean) {
+            localDataSource.setFavoriteTvShow(tvShow, state)
     }
 }

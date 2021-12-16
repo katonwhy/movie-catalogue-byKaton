@@ -13,7 +13,7 @@ object DataDummy {
 
         movies.add(
             MovieEntity(
-                1,
+                460462,
                 "A Star Is Born",
                 "Romance/Musical",
                 7.6,
@@ -89,6 +89,7 @@ object DataDummy {
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
             )
         )
+        /*
         movies.add(
             MovieEntity(
                 7,
@@ -259,6 +260,8 @@ object DataDummy {
             )
         )
 
+         */
+
         return movies
     }
 
@@ -268,7 +271,7 @@ object DataDummy {
 
         tvshows.add(
             TvshowEntity(
-                1,
+                88396,
                 "Arrow",
                 "Action",
                 7.9,
@@ -344,6 +347,7 @@ object DataDummy {
                 "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
             )
         )
+        /*
         tvshows.add(
             TvshowEntity(
                 7,
@@ -527,6 +531,8 @@ object DataDummy {
             )
         )
 
+         */
+
         return tvshows
     }
 
@@ -598,6 +604,24 @@ object DataDummy {
 
     fun generateTvShowResponse() : List<TvShow>{
         val tvShows = ArrayList<TvShow>()
+
+        tvShows.add(
+            TvShow(88396,
+                "The Falcon and the Winter Soldier",
+                "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+                "2021-03-19",
+                "https://image.tmdb.org/t/p/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                7.9,
+            ))
+
+        tvShows.add(
+            TvShow(88396,
+                "The Falcon and the Winter Soldier",
+                "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+                "2021-03-19",
+                "https://image.tmdb.org/t/p/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+                7.9,
+            ))
 
         tvShows.add(
             TvShow(88396,

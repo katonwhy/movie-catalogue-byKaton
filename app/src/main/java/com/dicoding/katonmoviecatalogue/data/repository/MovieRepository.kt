@@ -1,7 +1,6 @@
 package com.dicoding.katonmoviecatalogue.data.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.dicoding.katonmoviecatalogue.data.NetworkBoundResource
@@ -16,9 +15,6 @@ import com.dicoding.katonmoviecatalogue.data.source.remote.response.Movies
 import com.dicoding.katonmoviecatalogue.data.source.remote.response.TvShow
 import com.dicoding.katonmoviecatalogue.utils.AppExecutors
 import com.dicoding.katonmoviecatalogue.vo.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
 import java.lang.StringBuilder
 
 class MovieRepository private constructor(
